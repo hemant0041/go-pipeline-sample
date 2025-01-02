@@ -1,65 +1,25 @@
 pipeline:
-  identifier: Build_hemant0041_go_pipeline_sample_1735815118645
   name: Build go-pipeline-sample
-  orgIdentifier: default
-  projectIdentifier: default_project
-  properties:
-    ci:
-      codebase:
-        build: <+input>
-        connectorRef: account.Github
-        repoName: hemant0041/go-pipeline-sample
-  stages:
-    - stage:
-        identifier: build
-        name: build
-        spec:
-          caching:
-            enabled: true
-          cloneCodebase: true
-          execution:
-            steps:
-              - step:
-                  identifier: gobuild
-                  name: go_build
-                  spec:
-                    command: go build
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: gotestcoverage
-                  name: go_test_coverage
-                  spec:
-                    command: go test -coverprofile=coverage.out ./...
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: gotestreport
-                  name: go_test_report
-                  spec:
-                    command: "export GOBIN=/home/harness/go/bin\n\t\texport PATH=/home/harness/go/bin:$PATH\n\t\techo $PATH\n\t\tgo install github.com/jstemmer/go-junit-report/v2@latest\n\t\tgo test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml"
-                    reports:
+  identifier: Build_hemant0041_go_pipeline_sample_1735815118645
+  template:
+    templateRef: Hemant_Kumar_Mahato
+    versionLabel: v1
+    templateInputs:
+      properties:
+        ci:
+          codebase:
+            build: <+input>
+      stages:
+        - stage:
+            identifier: build
+            type: CI
+            spec:
+              execution:
+                steps:
+                  - step:
+                      identifier: dockerbuild
+                      type: BuildAndPushDockerRegistry
                       spec:
-                        paths:
-                          - /harness/report.xml
-                      type: JUnit
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
-          platform:
-            arch: Amd64
-            os: Linux
-          runtime:
-            spec: {}
-            type: Cloud
-        type: CI
+                        connectorRef: <+input>
+  projectIdentifier: default_project
+  orgIdentifier: default
