@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_hemant0041_go_pipeline_sample_1735815118645-push-trigger-input-set
+  identifier: Build_hemant0041_go_pipeline_sample_1735815118645pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_hemant0041_go_pipeline_sample_1735815118645
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
