@@ -19,16 +19,6 @@ pipeline:
                   spec:
                     shell: Sh
                     command: echo "Welcome to Harness CI"
-              - step:
-                  type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
-                  identifier: BuildAndPushDockerRegistry_1
-                  spec:
-                    connectorRef: account.harnessImage
-                    repo: https://hub.docker.com/repository/docker/hemant0041/test1
-                    tags:
-                      - "{{build.number}}"
-                    caching: true
           platform:
             os: Linux
             arch: Amd64
