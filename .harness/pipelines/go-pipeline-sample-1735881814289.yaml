@@ -27,7 +27,7 @@ pipeline:
                     connectorRef: account.harnessImage
                     repo: https://hub.docker.com/repository/docker/hemant0041/test1
                     tags:
-                      - v1
+                      - "{{build.number}}"
                     caching: true
           platform:
             os: Linux
