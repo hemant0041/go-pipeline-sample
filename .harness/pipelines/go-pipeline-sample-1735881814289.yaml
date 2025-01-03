@@ -17,12 +17,19 @@ pipeline:
                   name: run unit test
                   identifier: Echo_Welcome_Message
                   spec:
+                    connectorRef: account.harnessImage
+                    image: golang:1.15
                     shell: Sh
                     command: |-
                       set +e 
                       go get gotest.tools/gotestsum
                       gotestsum --format=standard -verbose --junitfile unit -tests.xml
                       exit 0
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "*.xml"
           platform:
             os: Linux
             arch: Amd64
