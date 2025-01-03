@@ -52,7 +52,7 @@ pipeline:
                     repo: <+input>
                     tags:
                       - latest
-                    caching: true
+                    caching: false
           platform:
             os: Linux
             arch: Amd64
