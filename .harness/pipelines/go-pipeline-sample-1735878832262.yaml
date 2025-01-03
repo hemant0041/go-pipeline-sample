@@ -7,9 +7,29 @@ pipeline:
     - stage:
         name: Build
         identifier: Build
-        template:
-          templateRef: testing
-          versionLabel: v1
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: echo"hello"
   properties:
     ci:
       codebase:
