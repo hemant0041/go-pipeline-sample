@@ -19,6 +19,63 @@ pipeline:
                   spec:
                     shell: Sh
                     command: echo "Welcome to Harness CI"
+              - step:
+                  type: Test
+                  name: Test_1
+                  identifier: Test_1
+                  spec:
+                    shell: Sh
+                    command: |
+                      #!/bin/bash
+
+                      # Exit on any error
+                      set -e
+
+                      # Print the current path and environment
+                      echo "Current PATH: $PATH"
+                      echo "Go Version: $(go version)"
+
+                      # Set up Go binary directory (if required)
+                      export GOBIN=/home/harness/go/bin
+                      export PATH=$GOBIN:$PATH
+
+                      # Install go-junit-report if not already installed
+                      echo "Checking if go-junit-report is installed..."
+                      if ! command -v go-junit-report &> /dev/null
+                      then
+                          echo "go-junit-report not found. Installing..."
+                          go install github.com/jstemmer/go-junit-report/v2@latest
+                      else
+                          echo "go-junit-report is already installed."
+                      fi
+
+                      # Print Go modules and dependencies status (optional for debugging)
+                      echo "Go Modules: $(go list -m all)"
+
+                      # Navigate to the root directory of the project (adjust the path if needed)
+                      cd /path/to/your/go/project
+
+                      # Run Go unit tests and generate the test report in JUnit XML format
+                      echo "Running unit tests..."
+                      go test -v ./... | tee result.log | go-junit-report -set-exit-code > result.xml
+
+                      # Check if the test result file was generated
+                      if [[ ! -f result.xml ]]; then
+                          echo "Test report not generated!"
+                          exit 1
+                      fi
+
+                      # Display test results
+                      echo "Test results saved to result.xml"
+                      cat result.xml
+
+                      # Optionally, display the contents of the log file
+                      echo "Test run details (from result.log):"
+                      cat result.log
+
+                      # Exit the script with the status of the tests
+                      exit 0
+                    intelligenceMode: true
           platform:
             os: Linux
             arch: Amd64
