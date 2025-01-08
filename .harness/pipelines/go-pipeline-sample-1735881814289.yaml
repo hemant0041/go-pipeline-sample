@@ -49,7 +49,7 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: <+input>
-                    repo: <+input>
+                    repo: docker/us1a-12
                     tags:
                       - latest
                     caching: false
