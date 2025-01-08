@@ -45,7 +45,7 @@ pipeline:
                       exit 0
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
+                  name: BuildAndPushJfrogrRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: <+input>
