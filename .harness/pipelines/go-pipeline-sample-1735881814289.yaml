@@ -51,7 +51,7 @@ pipeline:
                     connectorRef: <+input>
                     repo: <+input>
                     tags:
-                      - latest
+                      - latest1
                     caching: false
           platform:
             os: Linux
