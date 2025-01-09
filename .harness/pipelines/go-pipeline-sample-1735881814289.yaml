@@ -44,16 +44,6 @@ pipeline:
                       CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -tags netgo
                       exit 0
               - step:
-                  type: BuildAndPushDockerRegistry
-                  name: BuildAndPushJfrogrRegistry_1
-                  identifier: BuildAndPushDockerRegistry_1
-                  spec:
-                    connectorRef: <+input>
-                    repo: <+input>
-                    tags:
-                      - latest
-                    caching: false
-              - step:
                   type: ArtifactoryUpload
                   name: ArtifactoryUpload_1
                   identifier: ArtifactoryUpload_1
