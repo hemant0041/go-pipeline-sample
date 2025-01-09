@@ -49,8 +49,8 @@ pipeline:
                   identifier: ArtifactoryUpload_1
                   spec:
                     connectorRef: jfrog1
-                    target: <+input>
-                    sourcePath: <+input>
+                    target: testing-docker-local
+                    sourcePath: target
           platform:
             os: Linux
             arch: Amd64
