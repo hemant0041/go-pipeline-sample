@@ -50,7 +50,7 @@ pipeline:
                   spec:
                     connectorRef: jfrog1
                     target: testing-docker-local
-                    sourcePath: target
+                    sourcePath: docker/hemant0041/test1
           platform:
             os: Linux
             arch: Amd64
