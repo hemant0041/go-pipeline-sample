@@ -53,6 +53,14 @@ pipeline:
                     tags:
                       - latest
                     caching: false
+              - step:
+                  type: ArtifactoryUpload
+                  name: ArtifactoryUpload_1
+                  identifier: ArtifactoryUpload_1
+                  spec:
+                    connectorRef: jfrog1
+                    target: <+input>
+                    sourcePath: <+input>
           platform:
             os: Linux
             arch: Amd64
