@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_hemant0041_go_pipeline_sample_1736416954406-pr-trigger-input-set
+  identifier: Build_hemant0041_go_pipeline_sample_1736416954406prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: test2
+  pipeline:
+    identifier: Build_hemant0041_go_pipeline_sample_1736416954406
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
