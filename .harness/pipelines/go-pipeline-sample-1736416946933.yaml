@@ -24,7 +24,7 @@ pipeline:
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: docker1
+                    connectorRef: docker2
                     repo: <+input>
                     tags:
                       - latest1
